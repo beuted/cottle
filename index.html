@@ -981,38 +981,39 @@ going to be collapsed.</code>
 
 				<h3 id="delimiters_customization">Delimiters customization</h3>
 				<div class="section">
-					<p>When using default configuration, Cottle uses {
-					character to start a code block, | to continue it (before
-					an <code>else</code> statement for example), and } to end
-					it. These characters may not be a good choice if you want
-					to write a template that makes extensive literal use of
-					them, for example if you're writing a JavaScript template,
-					because you would have to escape every {, } and | to avoid
-					Cottle seeing them as block delimiters.</p>
-					<p>To workaround this problem, you can change default block
-					delimiters when creating a new document. New delimiters can
-					be any string and won't be validated by Cottle, so you
-					should avoid anything ambiguous otherwise the parser may
-					not be able to understand your code. For example, choosing
-					the ] character as a delimiter is a bad idea, as it will
-					conflict with internal end-of-map delimiter.</p>
+					<p>When using default configuration, Cottle uses
+					<code>{</code> character to start a code block,
+					<code>|</code> to continue it (before an <code>else</code>
+					statement for example), and <code>}</code> to end it. These
+					characters may not be a good choice if you want to write a
+					template that makes extensive literal use of them, for
+					example if you're writing a JavaScript template, because
+					you would have to escape every {, } and | to avoid Cottle
+					seeing them as block delimiters.</p>
+					<p>To workaround this problem you can change default block
+					delimiters when creating a new document. Any string can be
+					used as a delimiter as long as it doesn't conflict with a
+					valid Cottle expression (e.g. <code>[</code>,
+					<code>+</code> or <code>&lt;</code>). Make sure at least
+					the first character of your delimiters doesn't cause any
+					amiguity when choosing them.</p>
 					<blockquote class="code">
 						<span>Template</span>
-<code>Block delimiters are now [[block_begin]], [[block_continue]] and [[block_end]].</code>
+<code>Block delimiters are now {{block_begin}}, {{block_continue}} and {{block_end}}.</code>
 					</blockquote>
 					<blockquote class="code">
 						<span>C# code</span>
-<code>setting.BlockBegin = "[[";
+<code>setting.BlockBegin = "{{";
 setting.BlockContinue = "||";
-setting.BlockEnd = "]]";
+setting.BlockEnd = "}}";
 
-store["block_begin"] = "double left bracket (" + setting.BlockBegin + ")";
+store["block_begin"] = "double left brace (" + setting.BlockBegin + ")";
 store["block_continue"] = "double pipe (" + setting.BlockContinue + ")";
-store["block_end"] = "double right bracket (" + setting.BlockEnd + ")";</code>
+store["block_end"] = "double right brace (" + setting.BlockEnd + ")";</code>
 					</blockquote>
 					<blockquote class="code">
 						<span>Result</span>
-<code>Block delimiters are now double left bracket ([[), double pipe (||) and double right bracket (]]).</code>
+<code>Block delimiters are now double left brace ({{), double pipe (||) and double right brace (}}).</code>
 					</blockquote>
 				</div>
 
