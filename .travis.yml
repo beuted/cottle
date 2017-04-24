@@ -3,11 +3,9 @@ solution: Cottle.sln
 
 matrix:
   include:
-    - os: linux
-      dist: trusty
-      dotnet: 1.0.0-preview2-003121
+    - dotnet: 1.0.1
       mono: latest
-      env: DOTNETCORE=1
+      dist: trusty
 
 install:
   - nuget restore Cottle.sln
@@ -19,5 +17,5 @@ script:
 # - nuget pack -Prop Configuration=Release -Prop Platform=AnyCPU ./Cottle/Cottle.csproj
   - rm -fr ./artifacts
   - dotnet restore
-  - dotnet test ./Cottle.Test -c Release -f netcoreapp1.0
-  - dotnet pack ./Cottle -c Release -o ./artifacts
+  - dotnet test ./Cottle.Test/Cottle.Test.csproj -c Release -f netcoreapp1.0
+  - dotnet pack ./Cottle/Cottle.csproj -c Release -o ./artifacts
